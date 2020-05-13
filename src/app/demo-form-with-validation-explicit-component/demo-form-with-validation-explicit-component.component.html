@@ -1,0 +1,23 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Demo Form: with validations (required, begin with 123)</h2>
+  <form [formGroup]="myForm"
+      (ngSubmit)="onSubmit(myForm.value)"
+      [class.error]="!myForm.valid && myForm.touched"
+      class="ui form">
+<div  [class.error]="!myForm.valid && myForm.touched">
+      <label for="skuInput">SKU</label>
+      <input type="text"
+            id="skuInput"
+            placeholder="SKU"
+            [formControl]="sku">
+
+      <div *ngIf="sku.hasError('required')" class="ui error message">Sku is required</div>
+      <div *ngIf="sku.hasError('invalidSku')" class="ui error message">Sku does not begin with 123</div>
+      <div *ngIf="!sku.valid" class="ui error message">Sku is invalid }}</div>
+    </div>
+    <h3 class="ui header">Observable</h3>
+    <div>sku changed: {{observable}}</div>
+      <button type="submit" class="ui button">Submit</button>
+
+    </form>
+  </div>
